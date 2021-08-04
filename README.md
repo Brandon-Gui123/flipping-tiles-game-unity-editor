@@ -2,6 +2,8 @@
 
 A memory game where you flip tiles and match pairs, right within the Unity editor!
 
+![A GIF showing the flipping tiles game in action](flipping.gif)
+
 ## Project Objective
 
 The objective is to make a game, as fast as possible, that can run inside the Unity editor.
