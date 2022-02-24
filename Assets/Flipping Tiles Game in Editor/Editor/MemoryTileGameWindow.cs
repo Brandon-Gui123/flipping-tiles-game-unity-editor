@@ -156,6 +156,7 @@ namespace FlippingTiles
             {
                 yield return new EditorWaitForSeconds(0.1f);
                 timeSpent += 0.1f;
+                UpdateNumberOfSecondsUI(timeSpent);
             }
         }
 
@@ -199,6 +200,11 @@ namespace FlippingTiles
         private void UpdateFlipCounterUI(int flipCount)
         {
             rootVisualElement.Q<Label>("number-of-flips").text = flipCount.ToString();
+        }
+
+        private void UpdateNumberOfSecondsUI(float timeCount)
+        {
+            rootVisualElement.Q<Label>("number-of-seconds").text = timeSpent.ToString("F1");
         }
     }
 }
