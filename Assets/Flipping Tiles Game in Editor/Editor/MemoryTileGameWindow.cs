@@ -12,8 +12,8 @@ namespace FlippingTiles
     {
         private string[] colourStringsInUse =
         {
-        "red", "orange", "yellow", "green", "blue", "indigo", "magenta", "cyan", "dark-green"
-    };
+            "red", "orange", "yellow", "green", "blue", "indigo", "magenta", "cyan", "dark-green"
+        };
 
         private Button previouslyOpenedTile;
         private bool isOpeningAllowed = true;
@@ -68,21 +68,21 @@ namespace FlippingTiles
             rootVisualElement.Query<Button>(name: "TileButton").ForEach(
                 btn =>
                 {
-                // indicates that it isn't open
-                btn.text = "?";
+                    // indicates that it isn't open
+                    btn.text = "?";
 
-                // randomly assigning a colour
-                btn.Q<VisualElement>(className: "tile-colour-visual").ToggleInClassList(colourStrings[0]);
+                    // randomly assigning a colour
+                    btn.Q<VisualElement>(className: "tile-colour-visual").ToggleInClassList(colourStrings[0]);
                     btn.Q<VisualElement>(name: "TileColour").ToggleInClassList(colourStrings[0]);
 
-                // so our next button can access the next colour string
-                colourStrings.RemoveAt(0);
+                    // so our next button can access the next colour string
+                    colourStrings.RemoveAt(0);
 
-                // hide the visual until we need to display it
-                btn.Q<VisualElement>(className: "tile-colour-visual").style.display = DisplayStyle.None;
+                    // hide the visual until we need to display it
+                    btn.Q<VisualElement>(className: "tile-colour-visual").style.display = DisplayStyle.None;
 
-                // every button needs to perform an action when clicked
-                btn.clicked += () => OnTileButtonClicked(btn);
+                    // every button needs to perform an action when clicked
+                    btn.clicked += () => OnTileButtonClicked(btn);
                 }
             );
         }
