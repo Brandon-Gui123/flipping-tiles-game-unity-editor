@@ -21,6 +21,7 @@ namespace FlippingTiles
         private int numFlips = 0;
         private float timeSpent = 0;
         private bool hasRoundStarted = false;
+        private EditorCoroutine timerCoroutine;
 
         [MenuItem("MemoryTile/Open")]
         public static void OpenMemoryTileGameWindow()
@@ -100,7 +101,7 @@ namespace FlippingTiles
             if (!hasRoundStarted)
             {
                 hasRoundStarted = true;
-                this.StartCoroutine(TimerCoroutine());
+                timerCoroutine = this.StartCoroutine(TimerCoroutine());
             }
 
             if (previouslyOpenedTile == tileButton)
@@ -181,6 +182,7 @@ namespace FlippingTiles
             if (unmatchedTilesLeft <= 0)
             {
                 titleContent = new GUIContent("Memory Tile - YOU WIN");
+                this.StopCoroutine(timerCoroutine);
             }
         }
 
