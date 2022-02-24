@@ -145,11 +145,8 @@ namespace FlippingTiles
             first.Q<VisualElement>(className: "tile-colour-visual").style.display = DisplayStyle.None;
             second.Q<VisualElement>(className: "tile-colour-visual").style.display = DisplayStyle.None;
 
-            first.text = "X";
-            second.text = "X";
-
-            first.SetEnabled(false);
-            second.SetEnabled(false);
+            first.visible = false;
+            second.visible = false;
 
             // we now have 2 less tiles to match
             unmatchedTilesLeft -= 2;
