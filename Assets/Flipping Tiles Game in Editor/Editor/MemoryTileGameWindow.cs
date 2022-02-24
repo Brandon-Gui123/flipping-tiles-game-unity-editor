@@ -111,6 +111,7 @@ namespace FlippingTiles
                 tileButtonVisual.style.display = DisplayStyle.Flex;
 
                 numFlips++;
+                UpdateFlipCounterUI(numFlips);
             }
             else if (previouslyOpenedTile != null)
             {
@@ -118,6 +119,7 @@ namespace FlippingTiles
                 var tileButtonVisual = tileButton.Q<VisualElement>(className: "tile-colour-visual");
                 tileButtonVisual.style.display = DisplayStyle.Flex;
                 numFlips++;
+                UpdateFlipCounterUI(numFlips);
 
                 // check for a match
                 string previousTileColourString = previouslyOpenedTile.Q<VisualElement>(name: "TileColour").GetClasses().First();
@@ -175,6 +177,11 @@ namespace FlippingTiles
 
             // and we allow opening of tiles
             isOpeningAllowed = true;
+        }
+
+        private void UpdateFlipCounterUI(int flipCount)
+        {
+            rootVisualElement.Q<Label>("number-of-flips").text = flipCount.ToString();
         }
     }
 }
