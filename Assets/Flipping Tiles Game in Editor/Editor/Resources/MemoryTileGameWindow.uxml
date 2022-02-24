@@ -3,4 +3,8 @@
         <ui:Label text="Flips: " display-tooltip-when-elided="true" />
         <ui:Label text="0" display-tooltip-when-elided="true" name="number-of-flips" />
     </ui:VisualElement>
+    <ui:VisualElement name="time-counter" style="flex-direction: row;">
+        <ui:Label text="Time: " display-tooltip-when-elided="true" />
+        <ui:Label text="0" display-tooltip-when-elided="true" name="number-of-seconds" />
+    </ui:VisualElement>
 </ui:UXML>

@@ -19,6 +19,9 @@ namespace FlippingTiles
         private bool isOpeningAllowed = true;
         private int unmatchedTilesLeft = 36;
         private int numFlips = 0;
+        private float timeSpent = 0;
+        private bool hasRoundStarted = false;
+        private EditorCoroutine timerCoroutine;
 
         [MenuItem("MemoryTile/Open")]
         public static void OpenMemoryTileGameWindow()
@@ -95,6 +98,12 @@ namespace FlippingTiles
                 return;
             }
 
+            if (!hasRoundStarted)
+            {
+                hasRoundStarted = true;
+                timerCoroutine = this.StartCoroutine(TimerCoroutine());
+            }
+
             if (previouslyOpenedTile == tileButton)
             {
                 // close the tile
@@ -142,6 +151,16 @@ namespace FlippingTiles
             }
         }
 
+        private IEnumerator TimerCoroutine()
+        {
+            while (true)
+            {
+                yield return new EditorWaitForSeconds(0.1f);
+                timeSpent += 0.1f;
+                UpdateNumberOfSecondsUI(timeSpent);
+            }
+        }
+
         private IEnumerator MatchFoundCoroutine(Button first, Button second)
         {
             // give the player 1 second of time to look
@@ -163,6 +182,7 @@ namespace FlippingTiles
             if (unmatchedTilesLeft <= 0)
             {
                 titleContent = new GUIContent("Memory Tile - YOU WIN");
+                this.StopCoroutine(timerCoroutine);
             }
         }
 
@@ -182,6 +202,11 @@ namespace FlippingTiles
         private void UpdateFlipCounterUI(int flipCount)
         {
             rootVisualElement.Q<Label>("number-of-flips").text = flipCount.ToString();
+        }
+
+        private void UpdateNumberOfSecondsUI(float timeCount)
+        {
+            rootVisualElement.Q<Label>("number-of-seconds").text = timeSpent.ToString("F1");
         }
     }
 }
