@@ -18,6 +18,7 @@ namespace FlippingTiles
         private Button previouslyOpenedTile;
         private bool isOpeningAllowed = true;
         private int unmatchedTilesLeft = 36;
+        private int numFlips = 0;
 
         [MenuItem("MemoryTile/Open")]
         public static void OpenMemoryTileGameWindow()
@@ -108,12 +109,15 @@ namespace FlippingTiles
                 // open the tile
                 var tileButtonVisual = tileButton.Q<VisualElement>(className: "tile-colour-visual");
                 tileButtonVisual.style.display = DisplayStyle.Flex;
+
+                numFlips++;
             }
             else if (previouslyOpenedTile != null)
             {
                 // open the tile
                 var tileButtonVisual = tileButton.Q<VisualElement>(className: "tile-colour-visual");
                 tileButtonVisual.style.display = DisplayStyle.Flex;
+                numFlips++;
 
                 // check for a match
                 string previousTileColourString = previouslyOpenedTile.Q<VisualElement>(name: "TileColour").GetClasses().First();
