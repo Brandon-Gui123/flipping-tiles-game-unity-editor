@@ -19,6 +19,8 @@ namespace FlippingTiles
         private bool isOpeningAllowed = true;
         private int unmatchedTilesLeft = 36;
         private int numFlips = 0;
+        private float timeSpent = 0;
+        private bool hasRoundStarted = false;
 
         [MenuItem("MemoryTile/Open")]
         public static void OpenMemoryTileGameWindow()
@@ -95,6 +97,12 @@ namespace FlippingTiles
                 return;
             }
 
+            if (!hasRoundStarted)
+            {
+                hasRoundStarted = true;
+                this.StartCoroutine(TimerCoroutine());
+            }
+
             if (previouslyOpenedTile == tileButton)
             {
                 // close the tile
@@ -139,6 +147,15 @@ namespace FlippingTiles
                 }
 
                 previouslyOpenedTile = null;
+            }
+        }
+
+        private IEnumerator TimerCoroutine()
+        {
+            while (true)
+            {
+                yield return new EditorWaitForSeconds(0.1f);
+                timeSpent += 0.1f;
             }
         }
 
