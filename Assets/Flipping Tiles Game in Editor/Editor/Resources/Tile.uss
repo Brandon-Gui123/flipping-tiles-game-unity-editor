@@ -32,7 +32,3 @@
 .cyan {
     background-color: cyan;
 }
-
-.dark-green {
-    background-color: darkgreen;
-}
