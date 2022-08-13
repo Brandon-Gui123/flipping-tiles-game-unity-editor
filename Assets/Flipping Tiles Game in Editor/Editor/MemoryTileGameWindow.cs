@@ -12,7 +12,7 @@ namespace FlippingTiles
     {
         private string[] colourStringsInUse =
         {
-            "red", "orange", "yellow", "green", "blue", "indigo", "magenta", "cyan"
+            "red", "orange", "yellow", "green", "blue", "indigo", "magenta", "cyan", "dark-green"
         };
 
         private Button previouslyOpenedTile;
