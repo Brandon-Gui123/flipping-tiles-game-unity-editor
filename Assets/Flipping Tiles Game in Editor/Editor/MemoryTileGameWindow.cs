@@ -48,12 +48,12 @@ namespace FlippingTiles
             colourStrings = colourStrings.OrderBy(str => rand.Next()).ToList();
 
             var gameWindowTreeAsset = Resources.Load<VisualTreeAsset>("MemoryTileGameWindow");
-            gameWindowTreeAsset.CloneTree(rootVisualElement);
+            rootVisualElement.Add(gameWindowTreeAsset.Instantiate());
 
             for (int i = 0; i < 6; i++)
             {
                 var tileBoxTreeAsset = Resources.Load<VisualTreeAsset>("TileBox");
-                tileBoxTreeAsset.CloneTree(rootVisualElement);
+                rootVisualElement.Add(tileBoxTreeAsset.Instantiate());
             }
 
             var tileBoxes = rootVisualElement.Query<VisualElement>(className: "tile-box");
@@ -63,7 +63,7 @@ namespace FlippingTiles
                     for (int i = 0; i < 6; i++)
                     {
                         var tileTreeAsset = Resources.Load<VisualTreeAsset>("Tile");
-                        tileTreeAsset.CloneTree(ve);
+                        ve.Add(tileTreeAsset.Instantiate());
                     }
                 }
             );
